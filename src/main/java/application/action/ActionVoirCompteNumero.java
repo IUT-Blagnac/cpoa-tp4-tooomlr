@@ -1,10 +1,14 @@
 package application.action;
 
+import java.util.Locale;
+import java.util.Scanner;
+
 import banque.AgenceBancaire;
+import banque.Compte;
 
 public class ActionVoirCompteNumero implements Action{
 
-	String message,code;
+	private String message,code;
 	
 	public ActionVoirCompteNumero() {
 		
@@ -28,6 +32,24 @@ public class ActionVoirCompteNumero implements Action{
 	@Override
 	public void execute(AgenceBancaire ag) throws Exception {
 		// TODO Auto-generated method stub
+		System.out.print("Num compte -> ");
+		
+		Compte c;
+		
+		
+		Scanner lect;
+		
+		lect = new Scanner ( System.in );
+		lect.useLocale(Locale.US);
+		String numero = lect.next();
+		
+		c = ag.getCompte(numero);
+		if (c==null) {
+			System.out.println("Compte inexistant ...");
+		} else {
+			c.afficher();
+		}
+
 		
 	}
 

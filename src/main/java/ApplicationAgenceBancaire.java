@@ -22,7 +22,7 @@ public class ApplicationAgenceBancaire {
 	public static void afficherMenu(AgenceBancaire ag) {
 		System.out.println("Menu de " + ag.getNomAgence() + " (" + ag.getLocAgence() + ")");
 		System.out.println("l - Liste des comptes de l'agence");
-		System.out.println("p - voir les comptes d'un Propri�taire (par son nom)");
+		System.out.println("v - Voir un compte (par son num�ro)");
 		System.out.println("o - Menu opérations sur comptes");
 		System.out.println("g - Menu gestion des comptes");
 		System.out.println("q - Quitter");
@@ -131,13 +131,18 @@ public class ApplicationAgenceBancaire {
 						break;
 					}
 					
-				
-				case "p" :
-					System.out.print("Propri�taire -> ");
-					nom = lect.next();
-					ApplicationAgenceBancaire.comptesDUnPropretaire (monAg, nom);
+				case "v" :
+					System.out.print("Num compte -> ");
+					numero = lect.next();
+					c = monAg.getCompte(numero);
+					if (c==null) {
+						System.out.println("Compte inexistant ...");
+					} else {
+						c.afficher();
+					}
 					ApplicationAgenceBancaire.tempo();
-					break;		
+					break;
+				
 				
 				default :
 					System.out.println("Erreur de saisie ...");
